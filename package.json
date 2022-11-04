@@ -1,0 +1,11 @@
+{
+  "dependencies": {
+    "@nomiclabs/hardhat-ethers": "^2.0.2",
+    "ethers": "^5.7.0",
+    "hardhat": "^2.12.0",
+    "hardhat-tracer": "^1.1.1"
+  },
+  "engines": {
+    "node": ">=16.0.0"
+  }
+}
