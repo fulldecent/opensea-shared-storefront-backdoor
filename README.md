@@ -49,6 +49,38 @@ node index.mjs
 
 You should see some information printed, the current and new owner for the token and logs for the transfer. This demonstrates that the token was transferred.
 
+Example output:
+
+```
+Storefront (ERC-1155): 0x495f947276749ce646f68ac8c248420045cb7b5e
+Contract owner:        0xC669B5F25F03be2ac0323037CB57f49eB543657a
+Token ID:              46038921131323814396335747090004559834868014221610645288463784344990987059201
+Token owner:           0xE34228f210354911c0FedAD9941c7Cfd269B9E91
+Proxy registry stub:   0x20348916e39f3fc0E44338745b1bf1d6b57bcdDC
+Sender balance:        1
+Recipient balance:     0
+Transaction hash:      0x70a589322708fba40c9816a089e78cab3628d8c3030e64b9fdee55d07c7cef97
+Transaction logs:      [
+  {
+    transactionIndex: 0,
+    blockNumber: 15898730,
+    transactionHash: '0x70a589322708fba40c9816a089e78cab3628d8c3030e64b9fdee55d07c7cef97',
+    address: '0x495f947276749Ce646f68AC8c248420045cb7b5e',
+    topics: [
+      '0xc3d58168c5ae7397731d063d5bbf3d657854427343f4c083240f7aacaa2d0f62',
+      '0x000000000000000000000000c669b5f25f03be2ac0323037cb57f49eb543657a',
+      '0x000000000000000000000000e34228f210354911c0fedad9941c7cfd269b9e91',
+      '0x000000000000000000000000aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
+    ],
+    data: '0x65c91b1e502d798939f9f75d4710895e6315df770000000000013800000000010000000000000000000000000000000000000000000000000000000000000001',
+    logIndex: 0,
+    blockHash: '0x8edd5c489335ed9411724af5f0e9a565edd9b93e9ed306450d575ae8efd8268e'
+  }
+]
+Sender balance:        0
+Recipient balance:     1
+```
+
 If OpenSea administrators run this same transaction with their real private key on the Mainnet network then this token would be transferred for real. (What you are seeing is a local copy of this transaction which ignores the fact that it is invalid for want of the correct private key.)
 
 The above is a brief simplification. OpenSea Shared Storefront administration privilege has recently changed from a single owner to a [Gnosis safe](https://gnosis.io/safe/). No difference, to execute this transaction OpenSea administrators need to use only a slightly different process.
