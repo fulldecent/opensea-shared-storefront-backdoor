@@ -29,13 +29,19 @@ This project allows you to make a live copy of Ethereum Mainnet, execute some tr
 
    > https://infura.io/
 
-3. Find some specific NFT for sale inside OpenSea Shared Storefront and get its ID. [The demonstration uses](./index.mjs) `46038921131323814396335747090004559834868014221610645288463784344990987059201`, change it if you like.
+3. Find some specific NFT for sale inside OpenSea Shared Storefront and get its ID. [The demonstration uses](./index.mjs) `103964089402971035322194754460519211901162239038652937872902470904772294606849`, change it if you like.
 
-4. Find the owner of that NFT. [The demonstration uses](./index.mjs)  `0xE34228f210354911c0FedAD9941c7Cfd269B9E91`, change it if you like or if anybody else receives the NFT from Step 3.
+4. Find the owner of that NFT. [The demonstration uses](./index.mjs)  `0x6acdfba02d390b97ac2b2d42a63e85293bcc160e`, change it if you like or if anybody else receives the NFT from Step 3.
 
 ### Execute
 
 In one terminal window, execute Hardhat per below. This will allow you to locally try transactions on behalf of OpenSea administrators even though you don't know their private keys.
+
+```sh
+npx hardhat node --fork https://mainnet.infura.io/v3/xxxxYOURxKEYxxxx --fork-block-number 13558931
+```
+
+or to fork from the latest block:
 
 ```sh
 npx hardhat node --fork https://mainnet.infura.io/v3/xxxxYOURxKEYxxxx
@@ -53,28 +59,28 @@ Example output:
 
 ```
 Storefront (ERC-1155): 0x495f947276749ce646f68ac8c248420045cb7b5e
-Contract owner:        0xC669B5F25F03be2ac0323037CB57f49eB543657a
-Token ID:              46038921131323814396335747090004559834868014221610645288463784344990987059201
-Token owner:           0xE34228f210354911c0FedAD9941c7Cfd269B9E91
-Proxy registry stub:   0x20348916e39f3fc0E44338745b1bf1d6b57bcdDC
+Contract backdoor:     0x5b3256965e7C3cF26E11FCAf296DfC8807C01073
+Token ID:              103964089402971035322194754460519211901162239038652937872902470904772294606849
+Token owner:           0x6acdfba02d390b97ac2b2d42a63e85293bcc160e
+Proxy registry stub:   0x37197C9B145CCB73bEa78Ac92a31A49369F8Ed84
 Sender balance:        1
 Recipient balance:     0
-Transaction hash:      0x70a589322708fba40c9816a089e78cab3628d8c3030e64b9fdee55d07c7cef97
+Transaction hash:      0xcdf29153f1a77f24488e46da812dbdfa44ac50d3025632ffac9900ba94486e3d
 Transaction logs:      [
   {
     transactionIndex: 0,
-    blockNumber: 15898730,
-    transactionHash: '0x70a589322708fba40c9816a089e78cab3628d8c3030e64b9fdee55d07c7cef97',
+    blockNumber: 13558937,
+    transactionHash: '0xcdf29153f1a77f24488e46da812dbdfa44ac50d3025632ffac9900ba94486e3d',
     address: '0x495f947276749Ce646f68AC8c248420045cb7b5e',
     topics: [
       '0xc3d58168c5ae7397731d063d5bbf3d657854427343f4c083240f7aacaa2d0f62',
-      '0x000000000000000000000000c669b5f25f03be2ac0323037cb57f49eb543657a',
-      '0x000000000000000000000000e34228f210354911c0fedad9941c7cfd269b9e91',
+      '0x0000000000000000000000005b3256965e7c3cf26e11fcaf296dfc8807c01073',
+      '0x0000000000000000000000006acdfba02d390b97ac2b2d42a63e85293bcc160e',
       '0x000000000000000000000000aaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa'
     ],
-    data: '0x65c91b1e502d798939f9f75d4710895e6315df770000000000013800000000010000000000000000000000000000000000000000000000000000000000000001',
+    data: '0xe5d996dea423cd8af960ea39aed17c23f1bc3f530000000000000500000000010000000000000000000000000000000000000000000000000000000000000001',
     logIndex: 0,
-    blockHash: '0x8edd5c489335ed9411724af5f0e9a565edd9b93e9ed306450d575ae8efd8268e'
+    blockHash: '0xf0f3f782a75a3c04a2e14d64d730e2c2789f283112c67f85521c2a000ba899a0'
   }
 ]
 Sender balance:        0

@@ -2,20 +2,12 @@ import { ethers } from "ethers";
 import fs from "fs";
 
 const provider = new ethers.providers.JsonRpcProvider("http://127.0.0.1:8545/");
-const backdoorAccount = "0xC669B5F25F03be2ac0323037CB57f49eB543657a";
-const aTokenID = "46038921131323814396335747090004559834868014221610645288463784344990987059201";
-const tokenOwner = "0xE34228f210354911c0FedAD9941c7Cfd269B9E91";
+const sharedStorefrontAddress = "0x495f947276749ce646f68ac8c248420045cb7b5e";
+const aTokenID = "103964089402971035322194754460519211901162239038652937872902470904772294606849";
+const tokenOwner = "0x6acdfba02d390b97ac2b2d42a63e85293bcc160e";
 const tokenRecipient = "0xaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaaa";
-let signer;
-
-// Impersonate signer //////////////////////////////////////////////////////////////////////////////////////////////////
-const accountToImpersonate = backdoorAccount;
-await provider.send("hardhat_impersonateAccount", [accountToImpersonate]);
-await provider.send("hardhat_setBalance", [accountToImpersonate, "0x1000000000000000000"]);
-signer = provider.getSigner(accountToImpersonate);
 
 // OpenSea shared storefront contract //////////////////////////////////////////////////////////////////////////////////
-const sharedStorefrontAddress = "0x495f947276749ce646f68ac8c248420045cb7b5e";
 const sharedStorefrontABI = [
     // Backdoor stuff
     "function owner() view returns (address)",
@@ -26,12 +18,19 @@ const sharedStorefrontABI = [
     "function safeTransferFrom(address from, address to, uint256 id, uint256 amount, bytes calldata data)",
     "event TransferSingle(address indexed operator, address indexed from, address indexed to, uint256 id, uint256 value)",
 ];
-const sharedStorefront = new ethers.Contract(sharedStorefrontAddress, sharedStorefrontABI, signer);
-const contractOwner = await sharedStorefront.owner();
+const sharedStorefrontReadOnly = new ethers.Contract(sharedStorefrontAddress, sharedStorefrontABI, provider);
+const contractOwner = await sharedStorefrontReadOnly.owner();
 console.log("Storefront (ERC-1155):", sharedStorefrontAddress);
-console.log("Contract owner:       ", contractOwner);
+console.log("Contract backdoor:    ", contractOwner);
 console.log("Token ID:             ", aTokenID);
 console.log("Token owner:          ", tokenOwner);
+
+// Impersonate contract owner //////////////////////////////////////////////////////////////////////////////////////////
+const accountToImpersonate = contractOwner;
+await provider.send("hardhat_impersonateAccount", [accountToImpersonate]);
+await provider.send("hardhat_setBalance", [accountToImpersonate, "0x1000000000000000000"]);
+const signer = provider.getSigner(accountToImpersonate);
+const sharedStorefront = sharedStorefrontReadOnly.connect(signer);
 
 // Proxy registry stub /////////////////////////////////////////////////////////////////////////////////////////////////
 const proxyRegistryStubABI = JSON.parse(fs.readFileSync("./proxyRegistryStubABI.json"));
