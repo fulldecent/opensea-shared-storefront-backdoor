@@ -6,7 +6,7 @@ This project demonstrates how OpenSea administrators can take any tokens minted 
 
 OpenSea Shared Storefront is an [ERC-1155](https://eips.ethereum.org/EIPS/eip-1155) contract deployed on Ethereum Mainnet at 0x495f947276749ce646f68ac8c248420045cb7b5e. The contract supports an OpenSea service where artists can sell NFTs without incurring gas fees. 
 
-There [are about 1 million transactions](https://etherscan.io/txs?a=0x495f947276749ce646f68ac8c248420045cb7b5e) against this contract.
+There [are over 1 million transactions](https://etherscan.io/txs?a=0x495f947276749ce646f68ac8c248420045cb7b5e) against this contract.
 
 OpenSea administrators maintain control such that they can take, or freeze, NFTs created with this contract at any time. The contract's source code is not published and this control ability is not disclosed anywhere in OpenSea's terms of service or documentation.
 
